@@ -1,0 +1,9 @@
+core: 10
+
+ref:
+  fa: reference/tigr4.fasta
+  gff3: reference/tigr4.gff3
+
+read_dir: files/  # folders for raw fastq read files
+
+read_ext: _R1_001.fastq.gz

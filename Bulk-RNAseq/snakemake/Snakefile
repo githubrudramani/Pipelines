@@ -1,0 +1,95 @@
+configfile: "config.yaml"
+ext = config["read_ext"]
+core = config["core"]-1
+SAMPLES, = glob_wildcards(config['read_dir']+"{sample}" + ext)
+print(SAMPLES)
+
+rule all:
+    input:
+       expand(config["read_dir"] + "trimmed/{sample}_trimmed_R1_fastq.gz",  sample = SAMPLES),
+       expand("mapped_read/{sample}.bam", sample = SAMPLES),
+       expand("mapped_read/{sample}_sorted.bam", sample = SAMPLES),
+       expand("mapped_read/{sample}_sorted.bam.bai", sample = SAMPLES),
+       expand("htseq_count/{sample}.txt", sample = SAMPLES),
+       expand("htseq_count/merged_counts.csv")
+
+rule bwa_index:
+    input:
+        ref_fasta  = config["ref"]["fa"]
+    output:
+        ref  = touch("reference/bwa_index")
+    shell:
+        "bwa index  {input.ref_fasta} -p {output.ref}"
+
+rule fastp:
+    input:
+       R1 = config["read_dir"]+ "{sample}_R1_001.fastq.gz",
+       R2 = config["read_dir"]+ "{sample}_R2_001.fastq.gz",
+    
+    output:
+      R1= config["read_dir"]+ "trimmed/{sample}_trimmed_R1_fastq.gz",
+      R2= config["read_dir"] + "trimmed/{sample}_trimmed_R2_fastq.gz",
+      html= config["read_dir"]+ "trimmed/{sample}.fastp_report.html",
+      json= config["read_dir"]+ "trimmed/{sample}.fastp_report.json",
+    threads: core
+
+    shell:
+      "fastp -w {threads}  -i {input.R1} -I {input.R2}  --detect_adapter_for_pe   -o {output.R1} \
+-O {output.R2} -h {output.html} -j {output.json}"
+
+rule bwa_mem:
+    input:
+        ref = "reference/bwa_index",
+        R1 = config["read_dir"]+ "trimmed/{sample}_trimmed_R1_fastq.gz",
+        R2 = config["read_dir"]+ "trimmed/{sample}_trimmed_R2_fastq.gz"
+    output: 
+       "mapped_read/{sample}.bam"
+    log: 
+       "mapped_read/{sample}.bwa_map.log"
+    threads: core
+    shell:
+       "bwa mem -t {threads} {input.ref} {input.R1} {input.R2} | samtools view -@ {core} -Sb - > {output} 2> {log}"
+
+rule samtools_sort:
+    input:
+        "mapped_read/{sample}.bam"
+    output:
+        "mapped_read/{sample}_sorted.bam"
+    shell:
+        "samtools sort   -o {output}  {input}"
+
+
+rule samtools_index:
+    input:
+        "mapped_read/{sample}_sorted.bam"
+    output:
+        "mapped_read/{sample}_sorted.bam.bai"
+    shell:
+        "samtools index {input}"
+
+rule htseq_count:
+    input:
+       gff3 = config["ref"]["gff3"],
+       bam = "mapped_read/{sample}_sorted.bam",
+       bai = "mapped_read/{sample}_sorted.bam.bai"
+    output:
+        "htseq_count/{sample}.txt"
+    conda:
+       "htseq.yaml"
+    shell:
+       """ 
+       .snakemake/conda/*/bin/htseq-count  --format=bam --stranded=no --type=gene --order=pos --idattr=ID {input.bam}  {input.gff3}  > {output}
+       """ 
+
+rule merge_count:
+    input:
+        expand("htseq_count/{sample}.txt", sample = SAMPLES)
+    output:
+        "htseq_count/merged_counts.csv"
+    shell:
+      """
+      cd htseq_count
+      wget https://raw.githubusercontent.com/githubrudramani/Bioinformatics/master/merge_htseq_counts.py
+      python merge_htseq_counts.py
+     """
+
