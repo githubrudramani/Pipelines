@@ -7,7 +7,7 @@ I have desinged the workflow using simple bash script as well as using Snakemake
 - For bash script follow the folder: ***bash_script***
 - For Snakemake follow the folder: ***snakemake***
 #### For Differential Analysis:
-The corresponding folder is ***DESeq2*** 
+The corresponding folder is ***DESeq2***.\
 This folder implements the workflow for  differential gene expression analysis using DESeq2 bioconductor package. Follow the instructions in ***Bulk RNAseq Analysis.pdf*** file. It also contains few examples in file ***DESeq2Design.pdf*** to get the desired results form DESeq2 (dds) object.
 
 #### PathwaysAnalysis
