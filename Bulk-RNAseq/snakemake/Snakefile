@@ -11,7 +11,7 @@ rule all:
        expand("mapped_read/{sample}_sorted.bam", sample = SAMPLES),
        expand("mapped_read/{sample}_sorted.bam.bai", sample = SAMPLES),
        expand("htseq_count/{sample}.txt", sample = SAMPLES),
-       expand("htseq_count/merged_counts.csv")
+       touch("htseq_count/merged_counts.csv")
 
 rule bwa_index:
     input:
