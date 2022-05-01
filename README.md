@@ -12,3 +12,9 @@ This folder implements the workflow for  differential gene expression analysis u
 
 #### PathwaysAnalysis
 This folder contains a pdf file named ***Functional Pathways Analysis.pdf***, which includes a brief introducion to the package ***clusterProfiler*** to do GO and KEEG pathways analysis.
+
+## B. scRNAseq
+In this folder there are two files:
+**sc-RNAseq cellrnager.pdf** is **cellranger** for demultiplexing and getting count matrix from scRNAseq BCL files.
+
+**scRNA_data_analysis_complete_workflow.pdf**
