@@ -17,3 +17,6 @@ This folder contains a pdf file named ***Functional Pathways Analysis.pdf***, wh
 In this folder there are two files:
 - **sc-RNAseq cellrnager.pdf** is **cellranger** workflow for demultiplexing and getting count matrix from scRNAseq BCL files.
 - **scRNA_data_analysis_complete_workflow.pdf** is complete Seurat workflow for scRNAseq data analysis starting from cellranger output.
+
+## D. FlowCytometry
+The pdf file **Flow Cytometry data analysis workflow** describes the complete workflow for Flow Cytometry data.
