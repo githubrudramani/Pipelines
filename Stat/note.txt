@@ -1,0 +1,34 @@
+Central limit theore:
+	Mean of samples = Population mean
+	sd of sample means (SE)  = sd of population/squrt(number of samples) >> it is also called margin of error ( Standard Error;SE)
+
+For Normal Distriubution:
+	95% of sample means fall within 2 * SE  (exact 1.96) distance of population mean.
+	1.96 are CRITICAL values of Z for 95% confidence.
+	
+	98% of sample means fall within 2.33 * SE   distance of population mean.
+	2.33 are CRITICAL values of Z for 98% confidence.
+
+	99% of sample means fall within 2.576 * SE   distance of population mean.
+	2.576 are CRITICAL values of Z for 99% confidence.
+	
+	
+	Confidence Interval:
+	98 % confidence interval for population mean : (sample mean (x_bar) - Z(=2.33) * SE),    sample mean (x_bar) + Z(	2.33) *SE)
+	95 % confidence interval for populatin mean  : (sample mean (x_bar) - Z(=1.96) * SE),    sample mean (x_bar) + Z(	1.96) *SE)
+
+	Margin of Error : Z *SE 
+
+Probality of getting sample mean (x_bar) from popultion mean (mu):
+   first calculate SE = SD/sqrt(n)
+
+   z score = (x_bar - mu)/ SE
+   and use z- score table : P(Z < score)  take direct number , P(Z> score) take 1- number
+
+   Other examples here: https://sphweb.bumc.bu.edu/otlt/mph-modules/bs/sas/sas4-onesamplettest/sas4-onesamplettest5.html
+
+
+ Levels of likelihood
+ 	If probability of getting sample mean less than ( alpha levels :: 5% or 0.05, 1% or 0.001, .01% or 0.0001), which is usually considered unlikely.
+ 	To get z-critical value for alpha level (get the z-value  for area 1-alpha level)
+
