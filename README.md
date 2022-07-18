@@ -20,3 +20,7 @@ In this folder there are two files:
 
 ## C. Flow Cytometry Data
 The pdf file **Flow Cytometry data analysis workflow** describes the complete workflow for Flow Cytometry data.
+
+
+## D. Inferential statistics
+In the stat folder there is jupyter notebook **stat.ipynp** which includes detailed explanation of z-test, t-test, ANOVA, correlation, regression and chi-square test with examples
