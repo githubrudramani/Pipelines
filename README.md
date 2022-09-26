@@ -24,3 +24,8 @@ The pdf file **Flow Cytometry data analysis workflow** describes the complete wo
 
 ## D. Inferential statistics
 In the stat folder there is jupyter notebook **stat.ipynp** which includes detailed explanation of z-test, t-test, ANOVA, correlation, regression and chi-square test with examples incorpotated from Udacity's free statistical inference course
+
+
+## E. nsolver_mRNA
+It is a Python Package  to QC, normalize and analyze nano string nsolver mRNA data
+Look and the jupyter notebook (main.ipynb) in this folder for more detailed information.
