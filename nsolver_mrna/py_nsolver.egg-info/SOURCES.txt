@@ -1,0 +1,9 @@
+README.md
+setup.py
+py_nsolver/__init__.py
+py_nsolver/main.py
+py_nsolver/utility.py
+py_nsolver.egg-info/PKG-INFO
+py_nsolver.egg-info/SOURCES.txt
+py_nsolver.egg-info/dependency_links.txt
+py_nsolver.egg-info/top_level.txt
