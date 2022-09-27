@@ -380,7 +380,7 @@ def DE_analysis(df , sample, sample_col, group1 , group0 ,  ttest = "ind"):
     # let's do independent sample t-test which is performed in log2 transfer data
     countT = df.T
     countT_log = np.log2(countT)
-    countT_log[sample_col] = sample
+    countT_log[sample_col] = sample[sample_col].values
     
     t_value = []
     p_value = []
