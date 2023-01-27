@@ -29,3 +29,6 @@ In the stat folder there is jupyter notebook **stat.ipynp** which includes detai
 ## E. nsolver_mRNA
 It is a Python Package  to QC, normalize and analyze nano string nsolver mRNA data.
 Look at the jupyter notebook (main.ipynb) in this folder for more detailed information.
+
+## F. Pyvis_Network
+It is a example of plotting correlatin network graph between gene and metabolite data from sampe cohorts.
