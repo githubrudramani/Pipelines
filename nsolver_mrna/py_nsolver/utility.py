@@ -111,7 +111,7 @@ def read_rcc(path = "./", bc = "mean"):
         std_nc = np.std(nc)
 
         # Limit of detection (LOD) should be greater than 1
-        LOD = pos_e/(mean_nc + 2*std_nc)
+        LOD = pos_e/(mean_nc + 2 * std_nc)
 
         max_nc = max(nc)
         max_nc = int(np.round(max_nc))
@@ -121,10 +121,10 @@ def read_rcc(path = "./", bc = "mean"):
         gmean_nc = int(np.round(gmean_nc))
         
         # let's do background correction
-        value_bc = bg_correction(value, mean_nc, max_nc, std_nc, gmean_nc, bc = bc)
+        value_bc = bg_correction(value, mean_nc, max_nc, std_nc, gmean_nc, bc = "mean")
         count_bc = pd.DataFrame({"class": gene_class, ID: value_bc}, index = genes)
         
-        hs_value_bc = bg_correction(hs_value, mean_nc, max_nc, std_nc, gmean_nc, bc = bc)
+        hs_value_bc = bg_correction(hs_value, mean_nc, max_nc, std_nc, gmean_nc, bc = "mean")
         count_hk_bc = pd.DataFrame({"class": hs_class, ID: hs_value_bc}, index = hs_genes)
         
         count_df_bc = pd.concat([count_bc,count_hk_bc])
